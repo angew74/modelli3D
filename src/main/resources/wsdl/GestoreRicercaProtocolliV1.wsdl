@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:impl="http://ws.protocollo.eng" xmlns:intf="http://ws.protocollo.eng" xmlns:tns2="http://v1.data.protocollazione.protocollo.eng" xmlns:tns3="http://data.protocollazione.protocollo.eng" xmlns:tns4="http://protocollo.datatype.eng" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsi="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ws.protocollo.eng">
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns2="http://v1.data.protocollazione.protocollo.eng" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.protocollo.eng">
+            <import namespace="http://v1.data.protocollazione.protocollo.eng"/>
+            <element name="ricercaProtocolliResponse">
+                <complexType>
+                    <sequence>
+                        <element name="ricercaProtocolliReturn" nillable="true" type="impl:ArrayOf_186797045_1319523186_nillable_ProtocolloConAllegati"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ricercaProtocolli">
+                <complexType>
+                    <sequence>
+                        <element name="codice_applicazione_chiamante" nillable="true" type="xsd:string"/>
+                        <element name="password_applicazione_chiamante" nillable="true" type="xsd:string"/>
+                        <element name="codice_procedura" nillable="true" type="xsd:string"/>
+                        <element name="codice_documento" nillable="true" type="xsd:string"/>
+                        <element name="anno_protocollo" nillable="true" type="xsd:int"/>
+                        <element name="data_inizio" nillable="true" type="xsd:dateTime"/>
+                        <element name="ora_inizio" nillable="true" type="xsd:dateTime"/>
+                        <element name="data_fine" nillable="true" type="xsd:dateTime"/>
+                        <element name="ora_fine" nillable="true" type="xsd:dateTime"/>
+                        <element name="numero_progressivo_da" nillable="true" type="xsd:int"/>
+                        <element name="numero_progressivo_a" nillable="true" type="xsd:int"/>
+                        <element name="cod_doc_fisico" nillable="true" type="xsd:int"/>
+                        <element name="cod_doc_logico" nillable="true" type="xsd:int"/>
+                        <element name="cod_doc_sottologico" nillable="true" type="xsd:int"/>
+                        <element name="nominativo" nillable="true" type="xsd:string"/>
+                        <element name="tipo_ricerca_nominativo" nillable="true" type="xsd:string"/>
+                        <element name="unita_organizzativa_in_carico" nillable="true" type="xsd:string"/>
+                        <element name="tipo_ricerca_uo_in_carico" nillable="true" type="xsd:string"/>
+                        <element name="unita_organizzativa_in_mittente" nillable="true" type="xsd:string"/>
+                        <element name="tipo_ricerca_uo_in_mittente" nillable="true" type="xsd:string"/>
+                        <element name="testo_oggetto" nillable="true" type="xsd:string"/>
+                        <element name="tipo_ricerca_testo_oggetto" nillable="true" type="xsd:string"/>
+                        <element name="testo_note" nillable="true" type="xsd:string"/>
+                        <element name="tipo_ricerca_testo_note" nillable="true" type="xsd:string"/>
+                        <element name="parametro1" nillable="true" type="xsd:string"/>
+                        <element name="parametro2" nillable="true" type="xsd:string"/>
+                        <element name="parametro3" nillable="true" type="xsd:string"/>
+                        <element name="parametro4" nillable="true" type="xsd:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <complexType name="ArrayOf_186797045_1319523186_nillable_ProtocolloConAllegati">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="ProtocolloConAllegati" nillable="true" type="tns2:ProtocolloConAllegati"/>
+                </sequence>
+            </complexType>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns3="http://data.protocollazione.protocollo.eng" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://v1.data.protocollazione.protocollo.eng">
+            <import namespace="http://data.protocollazione.protocollo.eng"/>
+            <complexType name="ProtocolloConAllegati">
+                <complexContent>
+                    <extension base="tns3:ProtocolloErrore">
+                        <sequence>
+                            <element name="tipologia_protocollo" nillable="true" type="xsd:string"/>
+                            <element name="allegati" nillable="true" type="tns2:ArrayOf_1319523186_342555263_nillable_Allegato"/>
+                            <element name="annoProtocolloProvenienza" nillable="true" type="xsd:string"/>
+                            <element name="progProtocolloProvenienza" nillable="true" type="xsd:string"/>
+                            <element name="tipoProtocolloProvenienza" nillable="true" type="xsd:string"/>
+                            <element name="codiceDocumentoFisico" nillable="true" type="xsd:string"/>
+                            <element name="codiceDocumentoLogico" nillable="true" type="xsd:string"/>
+                            <element name="codiceDocumentoSTPLogico" nillable="true" type="xsd:string"/>
+                            <element name="dataUlterioreIdentificativo" nillable="true" type="xsd:string"/>
+                            <element name="descrizioneDocumentoFisico" nillable="true" type="xsd:string"/>
+                            <element name="descrizioneDocumentoLogico" nillable="true" type="xsd:string"/>
+                            <element name="descrizioneDocumentoSTPLogico" nillable="true" type="xsd:string"/>
+                            <element name="ulterioreIdentificativo" nillable="true" type="xsd:string"/>
+                            <element name="descrizioneStrutturaProtocollante" nillable="true" type="xsd:string"/>
+                            <element name="descrizioneUtenteProtocollante" nillable="true" type="xsd:string"/>
+                            <element name="codiceStrutturaProtocollante" nillable="true" type="xsd:string"/>
+                            <element name="utenteProtocollante" nillable="true" type="xsd:string"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <complexType name="ArrayOf_1319523186_342555263_nillable_Allegato">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="Allegato" nillable="true" type="tns3:Allegato"/>
+                </sequence>
+            </complexType>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns4="http://protocollo.datatype.eng" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://data.protocollazione.protocollo.eng">
+            <import namespace="http://protocollo.datatype.eng"/>
+            <complexType name="ProtocolloErrore">
+                <complexContent>
+                    <extension base="tns4:Protocollo">
+                        <sequence>
+                            <element name="errore" nillable="true" type="tns3:Errore"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <complexType name="Errore">
+                <sequence>
+                    <element name="codiceErrore" nillable="true" type="xsd:string"/>
+                    <element name="descrizioneErrore" nillable="true" type="xsd:string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Allegato">
+                <sequence>
+                    <element name="descrizione_file" nillable="true" type="xsd:string"/>
+                    <element name="identificativo_allegato" type="xsd:int"/>
+                    <element name="identificativo_hash" nillable="true" type="xsd:string"/>
+                    <element name="nome_file" nillable="true" type="xsd:string"/>
+                </sequence>
+            </complexType>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://protocollo.datatype.eng">
+            <complexType name="Protocollo">
+                <sequence>
+                    <element name="anno_protocollo" type="xsd:int"/>
+                    <element name="data_arrivo_documento" nillable="true" type="xsd:dateTime"/>
+                    <element name="data_protocollo" nillable="true" type="xsd:dateTime"/>
+                    <element name="data_protocollo_mittente" nillable="true" type="xsd:dateTime"/>
+                    <element name="fascicolo" nillable="true" type="tns4:Fascicolo"/>
+                    <element name="mittenti" nillable="true" type="tns4:ArrayOfMittente"/>
+                    <element name="note_documento" nillable="true" type="xsd:string"/>
+                    <element name="ora_arrivo_documento" nillable="true" type="xsd:dateTime"/>
+                    <element name="ora_protocollo" nillable="true" type="xsd:dateTime"/>
+                    <element name="progressivo_protocollo" type="xsd:int"/>
+                    <element name="protocollo_mittente" nillable="true" type="xsd:string"/>
+                    <element name="testo_oggetto" nillable="true" type="xsd:string"/>
+                    <element name="tipo_protocollo" nillable="true" type="xsd:string"/>
+                    <element name="destinatari" nillable="true" type="tns4:ArrayOfDestinatario"/>
+                </sequence>
+            </complexType>
+            <complexType name="Fascicolo">
+                <sequence>
+                    <element name="anno_protocollo" nillable="true" type="xsd:string"/>
+                    <element name="progressivo_protocollo" nillable="true" type="xsd:string"/>
+                    <element name="tipo_protocollo" nillable="true" type="xsd:string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Mittente">
+                <sequence>
+                    <element name="codice_mittente" nillable="true" type="xsd:string"/>
+                    <element name="descrizione_mittente" nillable="true" type="xsd:string"/>
+                    <element name="tipo_mittente" nillable="true" type="xsd:string"/>
+                </sequence>
+            </complexType>
+            <complexType name="ArrayOfMittente">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="Mittente" nillable="true" type="tns4:Mittente"/>
+                </sequence>
+            </complexType>
+            <complexType name="Destinatario">
+                <sequence>
+                    <element name="anno_protocollo" type="xsd:int"/>
+                    <element name="codice_destinatario" nillable="true" type="xsd:string"/>
+                    <element name="descrizione_destinatario" nillable="true" type="xsd:string"/>
+                    <element name="progressivo_destinatario" type="xsd:int"/>
+                    <element name="progressivo_protocollo" type="xsd:int"/>
+                    <element name="stato_destinatario" nillable="true" type="xsd:string"/>
+                    <element name="tipo_destinatario" nillable="true" type="xsd:string"/>
+                    <element name="tipo_protocollo" nillable="true" type="xsd:string"/>
+                    <element name="codice_utente" nillable="true" type="xsd:string"/>
+                    <element name="data_carico" nillable="true" type="xsd:dateTime"/>
+                    <element name="descrizione_utente" nillable="true" type="xsd:string"/>
+                </sequence>
+            </complexType>
+            <complexType name="ArrayOfDestinatario">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="Destinatario" nillable="true" type="tns4:Destinatario"/>
+                </sequence>
+            </complexType>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="ricercaProtocolliResponse">
+        <wsdl:part element="impl:ricercaProtocolliResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ricercaProtocolliRequest">
+        <wsdl:part element="impl:ricercaProtocolli" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="GestoreRicercaProtocolliV1">
+        <wsdl:operation name="ricercaProtocolli">
+            <wsdl:input message="impl:ricercaProtocolliRequest" name="ricercaProtocolliRequest"> </wsdl:input>
+            <wsdl:output message="impl:ricercaProtocolliResponse" name="ricercaProtocolliResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GestoreRicercaProtocolliV1SoapBinding" type="impl:GestoreRicercaProtocolliV1">
+        <wsaw:UsingAddressing wsdl:required="false"/>
+        <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ricercaProtocolli">
+            <wsdlsoap:operation soapAction="ricercaProtocolli"/>
+            <wsdl:input name="ricercaProtocolliRequest">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ricercaProtocolliResponse">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="GestoreRicercaProtocolliV1Service">
+        <wsdl:port binding="impl:GestoreRicercaProtocolliV1SoapBinding" name="GestoreRicercaProtocolliV1">
+            <wsdlsoap:address location="http://10.150.20.117:80/protocollowebsoap/services/GestoreRicercaProtocolliV1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

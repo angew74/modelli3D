@@ -158,6 +158,13 @@
 			<groupId>org.springframework.ws</groupId>
 			<artifactId>spring-ws-support</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.6</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -203,13 +210,13 @@
 				<configuration>
 					<!-- <wsdl>true</wsdl>
                      <xmlschema>false</xmlschema>-->
-					<packageName>com.roma.elettorale.modelli3D.entity.protocollo</packageName>
+					<packageName>com.roma.elettorale.modelli3D.entity.protocollo.ricerca</packageName>
 					<sourceType>wsdl</sourceType>
 					<sources>
-						<source>src/main/resources/wsdl/GestoreAllegato.wsdl</source>
+						<source>src/main/resources/wsdl/GestoreRicercaProtocolliV1.wsdl</source>
 					</sources>
 					<outputDirectory>${project.basedir}/target/generated-sources</outputDirectory>
-					<clearOutputDir>false</clearOutputDir>
+					<clearOutputDir>true</clearOutputDir>
 				</configuration>
 			</plugin>
 		</plugins>

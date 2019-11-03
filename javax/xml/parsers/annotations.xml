@@ -1,0 +1,5 @@
+<root>
+    <item name='javax.xml.parsers.DocumentBuilder'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>

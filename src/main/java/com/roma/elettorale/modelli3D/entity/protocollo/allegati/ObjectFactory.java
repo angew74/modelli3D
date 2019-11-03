@@ -6,7 +6,7 @@
 //
 
 
-package com.roma.elettorale.modelli3D.entity.protocollo;
+package com.roma.elettorale.modelli3D.entity.protocollo.allegati;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
