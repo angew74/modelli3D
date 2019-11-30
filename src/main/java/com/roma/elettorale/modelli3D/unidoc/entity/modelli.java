@@ -54,6 +54,16 @@ public class modelli {
     private byte[] fileScartato;
 
 
+    @Column(name = "MITTENTE")
+    private String mittente;
+
+    @Column(name = "ANNO_PROTOCOLLO")
+    private String annoprotocollo;
+
+    @Column(name = "NUMERO_PROTOCOLLO")
+    private String numeroprotocollo;
+
+
     public Integer getId() {
         return id;
     }
@@ -141,6 +151,30 @@ public class modelli {
 
     public void setFileScartato(byte[] fileScartato) {
         this.fileScartato = fileScartato;
+    }
+
+    public String getMittente() {
+        return mittente;
+    }
+
+    public void setMittente(String mittente) {
+        this.mittente = mittente;
+    }
+
+    public String getAnnoprotocollo() {
+        return annoprotocollo;
+    }
+
+    public void setAnnoprotocollo(String annoprotocollo) {
+        this.annoprotocollo = annoprotocollo;
+    }
+
+    public String getNumeroprotocollo() {
+        return numeroprotocollo;
+    }
+
+    public void setNumeroprotocollo(String numeroprotocollo) {
+        this.numeroprotocollo = numeroprotocollo;
     }
 }
 

@@ -18,27 +18,28 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
+@Qualifier("faxpecBean")
 @EnableJpaRepositories(entityManagerFactoryRef = "FaxPecEntityManagerFactory",
+        transactionManagerRef = "FaxPecTransactionManager",
         basePackages = {"com.roma.elettorale.modelli3D.faxpec.repository"})
 public class FaxPecDbConfig {
 
-    @Primary
+
     @Bean(name = "FaxPecDataSource")
     @ConfigurationProperties(prefix = "faxpec.datasource")
     public DataSource dataSource() {
-
         return DataSourceBuilder.create().build();
     }
 
-    @Primary
+
     @Bean(name = "FaxPecEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
             EntityManagerFactoryBuilder builder, @Qualifier("FaxPecDataSource") DataSource dataSource) {
-        return builder.dataSource(dataSource).packages("com.roma.elettorale.modelli3d.faxpec.entity").persistenceUnit("faxpec")
+        return builder.dataSource(dataSource).packages("com.roma.elettorale.modelli3D.faxpec.entity").persistenceUnit("faxpec")
                 .build();
     }
 
-    @Primary
+
     @Bean(name = "FaxPecTransactionManager")
     public PlatformTransactionManager transactionManager(
             @Qualifier("FaxPecEntityManagerFactory") EntityManagerFactory entityManagerFactory) {

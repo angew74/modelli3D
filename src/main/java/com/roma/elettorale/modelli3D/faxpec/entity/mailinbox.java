@@ -1,12 +1,20 @@
 package com.roma.elettorale.modelli3D.faxpec.entity;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
+import java.io.Serializable;
+import java.sql.Blob;
+import java.sql.Clob;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "MAIL_INBOX")
-public class mailinbox {
+@EntityListeners(AuditingEntityListener.class)
+public class mailinbox implements Serializable {
 
     @Id
     @Column(name = "MAIL_SERVER_ID")
@@ -33,27 +41,26 @@ public class mailinbox {
     @Column(name = "DATA_RICEZIONE")
     private LocalDate dataricezione;
 
-    @Column(name = "STATUS_SERVER")
-    private LocalDate statusserver;
-
     @Column(name = "STATUS_MAIL")
     private String statusmail;
 
-    @Lob
-    @Column(name = "MAIL_FILE")
-    private byte[] mailfile;
+
+    @Column(name="FOLDERID")
+    private Integer folderid;
 
     @Column(name = "REF_ID_COM")
     private Integer refidcom;
 
     @Column(name = "FLG_ATTACHMENTS")
-    private Integer flgattachements;
+    private String flgattachements;
 
     @Column(name = "ID_MAIL")
     private Integer idmail;
 
     @Column(name = "MAIL_FOLDER")
     private String mailfolder;
+
+
 
     public String getMailserverid() {
         return mailserverid;
@@ -119,28 +126,12 @@ public class mailinbox {
         this.dataricezione = dataricezione;
     }
 
-    public LocalDate getStatusserver() {
-        return statusserver;
-    }
-
-    public void setStatusserver(LocalDate statusserver) {
-        this.statusserver = statusserver;
-    }
-
     public String getStatusmail() {
         return statusmail;
     }
 
     public void setStatusmail(String statusmail) {
         this.statusmail = statusmail;
-    }
-
-    public byte[] getMailfile() {
-        return mailfile;
-    }
-
-    public void setMailfile(byte[] mailfile) {
-        this.mailfile = mailfile;
     }
 
     public Integer getRefidcom() {
@@ -151,11 +142,11 @@ public class mailinbox {
         this.refidcom = refidcom;
     }
 
-    public Integer getFlgattachements() {
+    public String getFlgattachements() {
         return flgattachements;
     }
 
-    public void setFlgattachements(Integer flgattachements) {
+    public void setFlgattachements(String flgattachements) {
         this.flgattachements = flgattachements;
     }
 
@@ -173,5 +164,13 @@ public class mailinbox {
 
     public void setMailfolder(String mailfolder) {
         this.mailfolder = mailfolder;
+    }
+
+    public Integer getFolderid() {
+        return folderid;
+    }
+
+    public void setFolderid(Integer folderid) {
+        this.folderid = folderid;
     }
 }

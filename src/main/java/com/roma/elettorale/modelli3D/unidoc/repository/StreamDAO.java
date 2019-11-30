@@ -1,6 +1,7 @@
 package com.roma.elettorale.modelli3D.unidoc.repository;
 
 import com.roma.elettorale.modelli3D.unidoc.entity.streamModelli;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Repository
 @Transactional
+@Qualifier("unidocBean")
 public interface StreamDAO extends JpaRepository<streamModelli, Long> {
 
 
@@ -19,7 +21,7 @@ public interface StreamDAO extends JpaRepository<streamModelli, Long> {
     List<streamModelli> findById(int refidstream);
     List<streamModelli> findByNumero(int numero);
     List<streamModelli> findByTipologia(int tipologia);
-    @Query("SELECT coalesce(max(ch.numero), 0) FROM streamModelli ch where id=(select max(id) from streamModelli )")
+    @Query("SELECT coalesce(max(ch.numero), 0) FROM streamModelli ch ")
     Integer getMaxId();
 
 

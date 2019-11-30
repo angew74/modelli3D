@@ -34,6 +34,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 public class TransformationFile {
@@ -145,6 +147,37 @@ public class TransformationFile {
         return m;
     }
 
+
+    public Document ConvertFileToXmlDocument(File fileToCheck)
+    {
+        FileInputStream fis = null;
+        // Creating a byte array using the length of the file
+        // file.length returns long which is cast to int
+        byte[] bArray = new byte[(int) fileToCheck.length()];
+        try {
+            fis = new FileInputStream(fileToCheck);
+            fis.read(bArray);
+            fis.close();
+
+        } catch (IOException ioExp) {
+            ioExp.printStackTrace();
+        }
+
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
+        DocumentBuilder builder = null;
+        Document document = null;
+        try {
+            builder = factory.newDocumentBuilder();
+            document = builder.parse(new ByteArrayInputStream(bArray));
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.debug("ERR_55: " + e.getMessage());
+        }
+        return document;
+
+    }
+
     public Document ConvertStringToXmlDocument(String xmlString) {
         //Parser that produces DOM object trees from XML content
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -224,24 +257,42 @@ public class TransformationFile {
         return sw.toString();
     }
 
-
-    public String ParsingTag(String tag, Document document) {
-        if (document.getElementsByTagName(tag).getLength() > 0) {
-            return document.getElementsByTagName(tag).item(0).getTextContent();
-        } else {
-            return "";
-        }
+    public byte[] convertDocumentToByteArray(Document doc) throws TransformerException {
+        byte[] array = null;
+        TransformerFactory tf = TransformerFactory.newInstance();
+        Transformer trans = tf.newTransformer();
+        StringWriter sw = new StringWriter();
+        trans.transform(new DOMSource(doc), new StreamResult(sw));
+        array = sw.toString().getBytes();
+        return array;
     }
 
 
+    public String ParsingTag(String tag, Document document) {
+        String ret = "";
+        if(document.getElementsByTagName(tag) != null) {
+            if (document.getElementsByTagName(tag).getLength() > 0) {
+                return document.getElementsByTagName(tag).item(0).getTextContent();
+            } else {
+                return "";
+            }
+        }
+        return  ret;
+    }
 
-    public String getMimeType(byte data[]) throws Exception {
+    public String getMimeTypeFromInputStream(InputStream is) throws IOException {
+        String mimeType = URLConnection.guessContentTypeFromStream(is);
+        return mimeType;
+    }
+
+
+    public String getMimeTypeFromByteArray(byte data[]) throws Exception {
         InputStream is = new BufferedInputStream(new ByteArrayInputStream(data));
         String mimeType = URLConnection.guessContentTypeFromStream(is);
         return mimeType;
     }
 
-    public File convertByteArrayToFile(byte[] file,String path) throws IOException {
+    public File convertByteArrayToFile(byte[] file, String path) throws IOException {
         File fileConverted = new File(path);
         OutputStream
                 os
@@ -254,21 +305,18 @@ public class TransformationFile {
 
     public XMLGregorianCalendar convertToXMLGregorianCalendar(String d) throws DatatypeConfigurationException, ParseException {
 
-    DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-    Date date = format.parse(d);
-
-    GregorianCalendar cal = new GregorianCalendar();
-cal.setTime(date);
-
-    XMLGregorianCalendar xmlGregCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
-    return  xmlGregCal;
-}
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = format.parse(d);
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(date);
+        XMLGregorianCalendar xmlGregCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
+        return xmlGregCal;
+    }
 
 
-    public String convertByteArrayToStringXml(byte[] file)
-    {
+    public String convertByteArrayToStringXml(byte[] file) {
         String converted = new String(file, StandardCharsets.UTF_8);
-        return  converted;
+        return converted;
     }
 
     public Optional<String> getExtensionByStringHandling(String filename) {
@@ -276,20 +324,44 @@ cal.setTime(date);
                 .filter(f -> f.contains("."))
                 .map(f -> f.substring(filename.lastIndexOf(".") + 1));
     }
+/*
+    public HashMap<String, Document> joinHashMap(HashMap<String, Document> map1, HashMap<String, Document> map2 ) {
+        HashMap<String, Document> map3 = EntryStream.of(map1)
+                .append(EntryStream.of(map2))
+                .toMap((e1, e2) -> e1);
+        return  map3;
+    }*/
+
+
+
+
 
     public byte[] convertFileToByteArray(File fileToCheck) {
         FileInputStream fis = null;
         // Creating a byte array using the length of the file
         // file.length returns long which is cast to int
         byte[] bArray = new byte[(int) fileToCheck.length()];
-        try{
+        try {
             fis = new FileInputStream(fileToCheck);
             fis.read(bArray);
             fis.close();
 
-        }catch(IOException ioExp){
+        } catch (IOException ioExp) {
             ioExp.printStackTrace();
         }
         return bArray;
+    }
+
+    public byte[] convertInputStreamToByteArray(InputStream is) throws IOException {
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        int nRead;
+        byte[] data = new byte[1024];
+        while ((nRead = is.read(data, 0, data.length)) != -1) {
+            buffer.write(data, 0, nRead);
+        }
+
+        buffer.flush();
+        byte[] byteArray = buffer.toByteArray();
+        return byteArray;
     }
 }

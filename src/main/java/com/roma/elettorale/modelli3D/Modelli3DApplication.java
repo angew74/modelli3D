@@ -43,7 +43,8 @@ public class Modelli3DApplication {
 	@Bean
 	public CommandLineRunner run(ApplicationContext appContext) {
 		return args -> {
-		elaborazioneModelli.getModelliProtocolloForDate();
+		    elaborazioneModelli.getModelliProtocolloForDate();
+			elaborazioneModelli.getModelliMailForDate();
 		};
 	}
 

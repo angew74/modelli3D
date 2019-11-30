@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface IMailInBoxService {
 
-    List<mailinbox> findByDataricezioneAndMailfolderAndMailtoAndMailsubject(LocalDate data, String mailfolder, String mailTo, String mailSubject );
-    List<mailinbox> findByDataricezioneAndMailfolderAndMailto(LocalDate data, String mailfolder,String mailTo);
+    List<mailinbox> findByDataricezioneBetweenAndMailfolderAndMailto(LocalDate data,LocalDate datafine, String mailfolder, String mailTo, String mailSubject, Integer flgatt);
+    List<mailinbox> findByDataricezioneAndMailfolderAndMailto(LocalDate data,LocalDate dataFine,  String mailfolder,String mailTo,Integer att);
+    List<mailinbox> findByDataricezioneBetweenAndMailfolderAndMailtoAndFlgattachements(LocalDate data, LocalDate datafine, String mailfolder,String mailTo, String flgatt, Integer folderid);
 }

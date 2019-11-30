@@ -1,12 +1,14 @@
 package com.roma.elettorale.modelli3D.unidoc.repository;
 
 import com.roma.elettorale.modelli3D.unidoc.entity.modelli;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
+@Qualifier("unidocBean")
 public interface ModelliDAO extends JpaRepository<modelli, Long> {
 
 

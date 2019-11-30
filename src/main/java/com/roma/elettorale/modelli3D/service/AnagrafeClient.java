@@ -172,7 +172,7 @@ public class AnagrafeClient extends WebServiceGatewaySupport {
             String servizio = env.getProperty("servizioveri");
            xmlRisposta = callMapper(verifica,servizio);
             Document d = ttransformation.convertStringToXMLDocument(xmlRisposta);
-           if(d.getElementsByTagName("codiceIndividuale").getLength() > 0)
+           if(d.getElementsByTagName("CodiceIndiv").getLength() > 0)
            {
                codiceIndividuale = ttransformation.ParsingTag("CodiceIndiv", d);
            }

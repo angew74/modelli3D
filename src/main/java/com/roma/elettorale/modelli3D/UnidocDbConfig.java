@@ -19,19 +19,23 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "entityUnidocManagerFactory",
         basePackages = {"com.roma.elettorale.modelli3D.unidoc.repository"})
+@Qualifier("unidocBean")
 public class UnidocDbConfig {
 
 
 
     @Bean(name = "dataSource")
     @ConfigurationProperties(prefix = "spring.datasource")
+    @Primary
     public DataSource dataSource() {
 
         return DataSourceBuilder.create().build();
     }
 
 
+
     @Bean(name = "entityUnidocManagerFactory")
+    @Primary
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
             EntityManagerFactoryBuilder builder, @Qualifier("dataSource") DataSource dataSource) {
         return builder.dataSource(dataSource).packages("com.roma.elettorale.modelli3D.unidoc.entity").persistenceUnit("unidoc")
@@ -40,6 +44,7 @@ public class UnidocDbConfig {
 
 
     @Bean(name = "transactionManager")
+    @Primary
     public PlatformTransactionManager transactionManager(
             @Qualifier("entityUnidocManagerFactory") EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);

@@ -4,7 +4,7 @@ public enum statusoperazione {
     CARICATO,
     ELABORATO,
     ERRORE,
-    NINETE,
+    FASCICOLO_AGGIORNATO,
     NIENTE,
     CITTADINO_NON_TROVATO,
     TROVATI_PIU_CITTADINI
